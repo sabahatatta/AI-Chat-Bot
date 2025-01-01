@@ -5,9 +5,9 @@ import streamlit as st
 from langchain_groq import ChatGroq
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.chains import RetrievalQA
 
@@ -27,7 +27,7 @@ for message in st.session_state.messages:
 # Phase 3 (Pre-requisite)
 @st.cache_resource
 def get_vectorstore():
-    pdf_name = "reflexion.pdf"
+    pdf_name = "Medical_book.pdf"
     loaders = [PyPDFLoader(pdf_name)]
     # Create chunks, aka vector database–Chromadb
     index = VectorstoreIndexCreator(
